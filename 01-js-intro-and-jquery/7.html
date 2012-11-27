@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Globant :: Welcome to the HTML5 bootcamp</title>
+    <script src="jquery-1.8.2.min.js"></script>
+	 <script>
+		
+		$(document).ready(function(){
+			// Asignamos el click al elemento a
+			$("a").click(function(){
+			
+			   $.ajax({
+				
+				   url:  'http://bootcamp.aws.af.cm/welcome/roberto',
+				   success: function(response, status, xhr){
+						
+						$("#capa1").html(response.response);
+						   
+				   },
+				   
+				   error: function (response, status, xhr) {    //change to red color
+						var x = $('div.response');
+						x.html(status+ ' - '+ xhr.status);        
+						x.css({ 'color':'#F00' });
+					},
+				   
+				}); 
+			   
+			});	
+			
+		})
+		
+		
+		
+	
+	 </script>
+		
+  </head>
+<body>
+	<div id="capa1" style="with:400px; height:600px; background: #0f9; position: relative;">Hola Mundo</div>
+
+	<a href="#">Mi boton</a>
+</body>
+</html>
