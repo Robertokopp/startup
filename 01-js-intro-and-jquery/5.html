@@ -4,32 +4,39 @@
     <meta charset="utf-8" />
     <title>Globant :: Welcome to the HTML5 bootcamp</title>
     <script src="jquery-1.8.2.min.js"></script>
-	 <script>
+
 		
-		$(document).ready(function(){
-			// Asignamos el click al elemento a
-			$("a").click(function(){
-			   $.ajax({
+
+	<script>
+
+	$(document).ready(function(){
+
+		$('#boton').bind("click", function(){ 
+			$.ajax({
 				
-				   url:  'http://bootcamp.aws.af.cm/welcome/roberto',
-				   success: function(response){
-						
-						   alert(response.response);
-				   },
-				});   
-			   
-			});	
-			
-		})
-		
-		
-		
-	
-	 </script>
-		
-  </head>
+				type: 'GET',
+                dataType: 'json',
+				url: 'http://bootcamp.aws.af.cm/welcome/roberto',
+				dataType:'json',
+				crossDomain: true,
+				success: function(response){
+
+					alert(response.response);
+				},
+			});
+
+		});	
+
+	})
+
+
+
+
+	</script>
+
+
+ </head>
 <body>
-	<a href="#">Mi boton</a>
+	<button id="boton">Mi boton</button><br>
 </body>
 </html>
-

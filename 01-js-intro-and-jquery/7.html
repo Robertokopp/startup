@@ -7,20 +7,24 @@
 	 <script>
 		
 		$(document).ready(function(){
-			// Asignamos el click al elemento a
-			$("a").click(function(){
+			
+			$('#boton').bind("click", function(){
 			
 			   $.ajax({
 				
-				   url:  'http://bootcamp.aws.af.cm/welcome/roberto',
-				   success: function(response, status, xhr){
+					type: 'GET',
+					dataType: 'json',
+					url: 'http://bootcamp.aws.af.cm/welcome/roberto',
+					dataType:'json',
+					crossDomain: true,
+					success: function(response, status, xhr){
 						
 						$("#capa1").html(response.response);
 						   
-				   },
+					},
 				   
-				   error: function (response, status, xhr) {    //change to red color
-						var x = $('div.response');
+					error: function (response, status, xhr) {   
+						var x = $('div.capa1');
 						x.html(status+ ' - '+ xhr.status);        
 						x.css({ 'color':'#F00' });
 					},
@@ -40,6 +44,6 @@
 <body>
 	<div id="capa1" style="with:400px; height:600px; background: #0f9; position: relative;">Hola Mundo</div>
 
-	<a href="#">Mi boton</a>
+	<button id="boton">Mi boton</button><br>
 </body>
 </html>
