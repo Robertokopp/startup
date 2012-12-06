@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<meta charset="utf-8">
+		<title>Parte 5</title> 
+		
+		<script src="jquery-1.8.2.min.js"></script>
+
+
+		<script src= "libs/handlebars-1.0.rc.1.js"></script>
+		<script src="libs/underscore.js"></script>
+		<script src="libs/dust0.3.0.js"></script>
+		
+		
+		
+			<script id="entry-template" type="text/x-handlebars-template">
+				
+				<Strong> Nombre </Strong>       : 	{{nombre}} <br>
+				<Strong> Nacimiento </Strong>   : 	{{nacimiento}} <br>
+			    <Strong> Edad </Strong>	        : 	{{edad}} <br>
+				<Strong> Posicion </Strong>     :   {{posicion}} <br>
+				<Strong> Nacionalidad </Strong> :   {{nacionalidad}} <br>
+				<Strong> Equipos </Strong>		:   {{#each equipos}}
+													{{this}} ,
+													{{/each}}
+				
+			
+				
+				
+			</script>
+		
+			
+		
+	</head> 
+	<body> 
+		
+		<script>
+			$(document).ready(function(){
+				
+				var source = $('#entry-template').html();
+				var template = Handlebars.compile(source);
+				
+				var context = {nombre : "Zinedine Zidane", nacimiento : "23 de junio de 1972", edad : "40 años", 
+							   posicion : "Volante", nacionalidad: "Francesa", equipos :  ["AS Cannes","Bordeaux","Juventus","Real Madrid"]}
+				var html    = template(context);
+				$('#mostrar').html(html);
+				
+				
+				
+  				
+  			});
+			</script>
+			
+			<div id="mostrar"></div>
+	</body>
+</html>
