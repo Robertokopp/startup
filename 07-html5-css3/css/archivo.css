@@ -1,0 +1,20 @@
+body {
+	background-color : lime;
+}
+
+@media screen and(max-width : 800 px){
+
+	#div1{
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		-column-count: 1;
+	}
+	
+	img{
+	
+		visibility : hidden;
+	}
+	
+
+}
+

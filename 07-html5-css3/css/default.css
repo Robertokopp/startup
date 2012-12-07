@@ -1,0 +1,71 @@
+.lista:hover{
+ 	background-color:red;
+ }
+ 
+article{
+	float: left;
+	width: 50%;
+}
+
+.HiOne{
+	background-color: red;
+}
+.HiTwo{
+	background-color: lime;
+}
+.HiThree{
+	background-color: yellow;
+}
+
+
+span[class^="Hi"]{
+ background-color: blue;
+}
+
+span[class$="One"]{
+ 	background-color: gray;
+}
+
+span{
+	background-color: orange;
+}
+
+.enlace1{
+  color: green;
+ }
+ 
+ .enlace2{
+   color: black;
+ }
+ 
+  p:empty{
+	display:none;
+}
+
+article{
+   
+   text-shadow: 3px 3px 2px #696;
+   color: #666;;
+}
+
+
+
+aside{
+		-webkit-transform: rotate(45deg); 
+		-ms-transform: rotate(45deg);          
+		-o-transform: rotate(45deg);         
+		-moz-transform: rotate(45deg);
+
+}
+
+
+
+@media screen and(max-width : 800 px){
+
+	#div1{
+		-moz-column-count: 1;
+		-webkit-column-count: 1;
+		-column-count: 1;
+	}
+
+}
