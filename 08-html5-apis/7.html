@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html manifest="cache.appcache">
+	<head> 
+		<meta charset="utf-8">
+		<title>Parte 8</title> 
+		
+		<script src="jquery-1.8.2.min.js"></script>
+		<link href="estilos.css" rel="stylesheet">  
+		
+		<script>
+			$(document).ready(function(){
+			
+				
+				$('#boton').on('click',function() {
+					eval($('#codigofuente').val());
+				});
+				
+				var area = document.querySelector('#codigofuente');
+				if (!area.value) {
+					area.value = window.localStorage.getItem('value');
+				}
+				updateLog(false);
+				document.querySelector('#salvar').addEventListener('click', function () {
+				window.localStorage.setItem('value', area.value);
+				window.localStorage.setItem('timestamp', (new Date()).getTime());
+				updateLog(true);
+				}, false);
+	
+				function updateLog(new_save) {
+					var log = document.querySelector("#ppp");
+					var delta = 0;
+					if (window.localStorage.getItem('value')) {
+						delta = ((new Date()).getTime() - (new Date()).setTime(window.localStorage.getItem('timestamp'))) / 1000;
+						if (new_save) {
+							log.textContent = 'Guardado. El contenido estara disponible despues de actualizar el navegador / volver a abrir.';
+							setTimeout(function() {
+							log.textContent = '';
+							}, 3000);
+						} else {
+						log.textContent = 'Guardado por ultima vez : ' + delta + 's';
+						}
+					}
+				}
+            
+			});
+		</script>
+		
+		
+	</head> 
+	<body> 
+		<header>
+			<h1> Ejercicio 7 </h1>
+		</header>
+		
+		
+		<textarea id="codigofuente" row="8" cols="77">Codigo a ejecutar</textarea>
+		<button id="boton">Ejecutar Codigo</button>
+		<button id="salvar" >Salvar codigo</button>
+		<p id="ppp"></p>
+		<footer>
+				<strong>Roberto kopp</strong>
+		</footer>
+	</body>
+</html>
