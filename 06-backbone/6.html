@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8" />
+    	<title> Parte 6 </title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1"> 		
+
+		<script src="jquery-1.8.2.min.js"></script>
+
+    	<script type="text/javascript" src="underscore.js"></script>
+    	<script type="text/javascript" src="backbone.js"></script>
+    	
+  
+	</head>
+	<body>
+		<script>
+                                               
+
+		    var pelicula = Backbone.Model.extend({
+
+		      initialize: function(){
+		        console.log('modelo inicializado');
+		      },
+		      defaults: {
+		        name: "Taken",
+		      	year: "2008",
+		      }
+		    }); 
+
+
+		                                      
+		    var MovieMCollection = Backbone.Collection.extend({
+		      model: pelicula
+		    });
+                                              
+			(function($){
+
+			      var vista = Backbone.View.extend({
+				        el: $('body'),
+
+				        events: {
+				          'click button#agregarPel': 'aNombre',
+				        },
+
+				        initialize: function(){
+					        _.bindAll(this,'render','aNombre','agregar');
+
+					        this.pelis = new MovieMCollection();
+					        this.pelis.bind('add', this.agregar ); 
+
+					        this.contador = 0; 
+				            this.render();
+				            console.log('Vista inicializada');
+				        },
+				        render: function(){
+							var self = this;
+					        
+		    		        $(this.el).append('Pelicula '+'<input id="nombrePel" type="text" value="Taken">'+ '  Fecha  ' +'<input id="anioPel" type="text" value="2008">');
+				            $(this.el).append('<button id="agregarPel">Agregar</button><br />');
+							$(this.el).append('<br />');
+							$(this.el).append('<strong> Peliculas :  </strong><br />'); 
+							$(this.el).append('<ul id="lista"></ul>');
+						},
+
+
+				        aNombre: function(){
+
+					          this.contador++;
+					          var peli = new pelicula();
+
+					          
+					          peli.set({
+					            nombre: $('#nombrePel').val(),
+					            anio: $('#anioPel').val() 
+					          });
+
+					          this.pelis.add(peli); 
+					          //console.log('Pelicula: ' + peli.get('nombre') + ' '+ peli.get('anio'));
+				        },
+
+
+				        agregar: function(peli){
+
+				          $('#lista', this.el).append('<li>' + peli.get('nombre')+ '-' + peli.get('anio') +'</li>');
+				        },
+
+
+			      });
+
+			      var vista = new vista();
+			   })(jQuery);
+
+		</script>
+
+
+	</body>
+</html>
